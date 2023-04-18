@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  frontend:
+    env_file:
+      - ./frontend/.env
+    build:
+      context: ./
+      dockerfile: ./frontend/Dockerfile
+    ports:
+      - "${FRONTEND_ADDRESS}:3006"
+
+  backend:
+    env_file:
+      # contains QDRANT_CLUSTER_URL and QDRANT_CLUSTER_TOKEN
+      - secrets.env
+      - ./qdrant_service/.env
+    build:
+      context: ./qdrant_service/
+      dockerfile: ./Dockerfile
+    ports:
+      - "${SERVICE_ADDRESS}:8000"
+#for execution: $> sudo docker compose up

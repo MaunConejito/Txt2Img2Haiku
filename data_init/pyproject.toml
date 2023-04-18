@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "data-init"
+version = "0.1.0"
+description = ""
+authors = ["FatMadLad <mrammler@web.de>"]
+packages = [{include = "data_init"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+boto3 = "^1.26.115"
+tqdm = "^4.65.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
