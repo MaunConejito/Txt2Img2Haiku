@@ -3,10 +3,10 @@ version: '3.3'
 services:
   frontend:
     env_file:
-      - ./frontend/.env
+      - .env
     build:
-      context: ./
-      dockerfile: ./frontend/Dockerfile
+      context: ./frontend/
+      dockerfile: ./Dockerfile
     ports:
       - "${FRONTEND_ADDRESS}:3006"
 
@@ -14,9 +14,9 @@ services:
     env_file:
       # contains QDRANT_CLUSTER_URL and QDRANT_CLUSTER_TOKEN
       - secrets.env
-      - ./qdrant_service/.env
+      - .env
     build:
-      context: ./qdrant_service/
+      context: ./backend/
       dockerfile: ./Dockerfile
     ports:
       - "${SERVICE_ADDRESS}:8000"

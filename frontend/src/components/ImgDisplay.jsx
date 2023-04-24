@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { SimpleGrid, Box, Center, Image, Spinner } from '@chakra-ui/react'
 
-export default function ImgDisplay({ imgs, waiting }) {
-  const [text, setText] = useState('');
+export default function ImgDisplay({ urls, waiting }) {
 
   return (
     waiting ? (
@@ -15,11 +14,12 @@ export default function ImgDisplay({ imgs, waiting }) {
     ) : (
       <SimpleGrid
       minChildWidth={150}>
-        {imgs.map((img, i) =>
+        {urls.map((url, i) =>
           <Center
           m='10px'>
             <Image
-            src={'/data/imgs/'+img}
+            src={url}
+            fallbackSrc={'/fallback.webp'}
             key={i}
             borderRadius='10'/>
           </Center>

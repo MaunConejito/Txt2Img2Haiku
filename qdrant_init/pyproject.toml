@@ -3,7 +3,6 @@ name = "cluster-preparation"
 version = "0.1.0"
 description = ""
 authors = ["FatMadLad <mrammler@web.de>"]
-readme = "README.md"
 packages = [{include = "cluster_preparation"}]
 
 [tool.poetry.dependencies]

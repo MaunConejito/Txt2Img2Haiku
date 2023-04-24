@@ -14,20 +14,22 @@ def create_imgs_list(csv_file: str, list_file: str, url_file: str, max_n: int):
     if os.path.isfile(list_file): return
     if os.path.isfile(url_file): os.remove(url_file)
 
+    url_dict = {}
+
     with open(csv_file, newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
 
-        with open(list_file, 'w', newline='') as listfile,\
-             open(url_file, 'w', newline='') as urlfile:
+        with open(list_file, 'w', newline='') as listfile:
             list_writer = csv.writer(listfile, delimiter=',')
-            url_writer = csv.writer(urlfile, delimiter=',')
 
             for i, row in enumerate(reader):
                 if i == 0: continue
                 if i > max_n: break
                 list_writer.writerow([row[1]+'/'+row[0]])
-                url_writer.writerow([row[10] if row[10] else row[2]])
+                url_dict[row[0]] = row[10] if row[10] else row[2]
 
+    with open(url_file, 'wb') as pickle_file:
+        pickle.dump(url_dict, pickle_file)
 
 def create_haiku_json(csv_file: str, pkl_file: str):
     if not os.path.isfile(csv_file): return
@@ -60,14 +62,14 @@ def download_imgs(max_n: int):
 
     imgs_csv = os.path.join(DATA_DIR, "imgs.csv")
     imgs_list = os.path.join(DATA_DIR, "imgs.list")
-    url_list = os.path.join(DATA_DIR, "urls.list")
+    url_file = os.path.join(DATA_DIR, "id_url_map.pkl")
 
     if not os.path.isfile(imgs_csv):
         urllib.request.urlretrieve(IMG_CSV_URL, imgs_csv)
 
-    create_imgs_list(imgs_csv, imgs_list, url_list, max_n)
+    create_imgs_list(imgs_csv, imgs_list, url_file, max_n)
 
     if imgs_list and len(os.listdir(IMG_DIR)) == 0:
         download_all_images({'download_folder': IMG_DIR,\
-                             'image_list': img_list_file,\
+                             'image_list': imgs_list,\
                              'num_processes': 5 })

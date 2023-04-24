@@ -5,7 +5,7 @@ from cluster_preparation.env import read_env_vars
 CODE_DIR = os.path.dirname(__file__)
 PROJECT_DIR = os.path.join(CODE_DIR, '../..')
 
-read_env_vars(PROJECT_DIR, ['.env'])
+read_env_vars(PROJECT_DIR, ['.env', 'secrets.env'])
 
 DATA_DIR = os.path.normpath(os.path.join(PROJECT_DIR,\
             os.environ.get('DATA_DIR', '/data')))
