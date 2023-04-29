@@ -119,7 +119,10 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
                   borderRadius='10'
                   boxShadow={imgBoxShadow(selected[i], false)}
                   _hover={{
-                    boxShadow: imgBoxShadow(selected[i], true)
+                    base: {},
+                    md: {
+                      boxShadow: imgBoxShadow(selected[i], true)
+                    }
                   }}/>
                 </Center>
               )}
