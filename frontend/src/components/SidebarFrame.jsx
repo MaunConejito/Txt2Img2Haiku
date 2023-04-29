@@ -5,6 +5,7 @@ import {
   Stack,
   CloseButton,
   Flex,
+  Link,
   Image,
   useBreakpointValue,
   Drawer,
@@ -13,7 +14,10 @@ import {
   Heading,
   useDisclosure
 } from '@chakra-ui/react';
-import { QuestionOutlineIcon } from '@chakra-ui/icons'
+import {
+  QuestionOutlineIcon,
+  ExternalLinkIcon
+} from '@chakra-ui/icons'
 
 export default function SidebarFrame({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -67,7 +71,9 @@ const Logo = ({ spacing, ...rest }) => (
 const InfoText = ({ ...rest }) => (
   <Stack
     direction='column'
-    p='4'>
+    p='4'
+    style={{overflow: 'auto'}}
+    {...rest}>
     <Heading as='h2' size='md'>
       1. Enter Query
     </Heading>
@@ -107,16 +113,40 @@ const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
       bg={'white'}
+      borderRight={'1px'}
       borderRightColor={'gray.200'}
       w={{ base: 'full', md: 60 }}
       pos='fixed'
       h='full'
       {...rest}>
-      <Flex h='20' alignItems='center' mx='4' justifyContent='space-between'>
+      <Flex
+        h='20'
+        alignItems='center'
+        mx='4'
+        justifyContent='space-between'
+        borderBottom={'1px'}
+        borderBottomColor={'gray.200'}>
         <Logo spacing={{ base: '4', md: '2' }}/>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      <InfoText/>
+      <InfoText
+        position='absolute'
+        top={20}
+        bottom={10}/>
+      <Flex
+        alignItems='center'
+        justify='center'
+        position='absolute'
+        bottom={0}
+        h={10}
+        w={{ base: 'calc(100% - 30px)', md: '52' }}
+        mx='4'
+        borderTop={'1px'}
+        borderTopColor={'gray.200'}>
+        <Link fontSize='sm' href='https://github.com/FatMadLad/Txt2Img2Haiku' isExternal>
+          GitHub Repository <ExternalLinkIcon mx='2px' />
+        </Link>
+      </Flex>
     </Box>
   );
 };

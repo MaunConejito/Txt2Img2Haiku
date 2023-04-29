@@ -11,6 +11,7 @@ import { config } from './config.js';
 const {
   SimpleGrid,
   Box,
+  Flex,
   Center,
   Stack,
   Image,
@@ -19,6 +20,7 @@ const {
   Input,
   InputRightElement,
   Button,
+  Link,
   Text,
   Heading,
   Container,
@@ -29,6 +31,7 @@ const theme = extendBaseTheme({
   components: {
     SimpleGrid,
     Box,
+    Flex,
     Center,
     Stack,
     Image,
@@ -37,6 +40,7 @@ const theme = extendBaseTheme({
     Input,
     InputRightElement,
     Button,
+    Link,
     Text,
     Heading,
     Container,
