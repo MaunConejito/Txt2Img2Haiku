@@ -2,8 +2,6 @@ version: '3.3'
 
 services:
   frontend:
-    env_file:
-      - frontend.local.env
     build:
       context: ./frontend/
       dockerfile: ./Dockerfile_local

@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "export $(grep -e '^#' -e '^$' ../frontend.local.env -v | perl -ne 'print \"REACT_APP_$_\"' | xargs) && react-scripts start",
+    "start": "export $(grep -e '^#' -e '^$' ./frontend.local.env -v | perl -ne 'print \"REACT_APP_$_\"' | xargs) && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

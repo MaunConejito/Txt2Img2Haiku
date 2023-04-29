@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import { SimpleGrid, Box, Stack, Center, Container, Image, Text, Spinner } from '@chakra-ui/react'
+import { SimpleGrid, Stack, Text } from '@chakra-ui/react'
 
 export default function HaikuDisplay({ haikus }) {
   return (
