@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useReducer } from 'react';
 import { arraysEqual } from '../utils.js';
 
 import { InputGroup, Input, InputRightElement, Center, Box, Button } from '@chakra-ui/react'
@@ -66,7 +66,7 @@ export default function HaikuSearch() {
   }
 
   const onKeyUp = (e) => {
-    if(e.key == 'Enter'){
+    if(e.key === 'Enter'){
       onSubmit(e)
     }
   }
@@ -80,10 +80,14 @@ export default function HaikuSearch() {
           <Input
           placeholder='Enter search query ...'
           onChange={onInputChange}
-          onKeyUp={onKeyUp}/>
+          onKeyUp={onKeyUp}
+          bg='white'
+          borderWidth='2px'
+          borderColor='gray.300'/>
           <InputRightElement
           width='4rem'>
             <Button w='3rem' h='1.75rem'
+            borderWidth='2px'
             size='sm'
             onClick={onSubmit}>
               go
@@ -103,7 +107,7 @@ export default function HaikuSearch() {
           <VerticalLine/>
           <HaikuFinder
           query={queryObject}
-          n={4}/>
+          n={6}/>
         </>}
       </Box>
     </Box>

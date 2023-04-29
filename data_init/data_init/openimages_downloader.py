@@ -68,8 +68,9 @@ def read_image_list_file(image_list_file):
 
 def download_one_image(bucket, split, image_id, download_folder):
   try:
-    bucket.download_file(f'{split}/{image_id}.jpg',
-                         os.path.join(download_folder, f'{image_id}.jpg'))
+    file = os.path.join(download_folder, f'{image_id}.jpg')
+    if not os.path.isfile(file): # added this to skip already downloaded files
+        bucket.download_file(f'{split}/{image_id}.jpg', file)
   except botocore.exceptions.ClientError as exception:
     sys.exit(
         f'ERROR when downloading image `{split}/{image_id}`: {str(exception)}')

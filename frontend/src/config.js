@@ -1,6 +1,6 @@
 import path from 'path-browserify';
 
-const serviceUrl = 'https://' + process.env.REACT_APP_SERVICE_ADDRESS;
+const serviceUrl = process.env.REACT_APP_SERVICE_URL;
 const rootDir = path.join(__dirname, '../..');
 
 export const config = {

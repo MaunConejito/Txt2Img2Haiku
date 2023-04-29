@@ -1,15 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { SimpleGrid, Box, Center, AspectRatio, Container,
-         Image, Spinner, Circle, Button, Collapse, useDisclosure } from '@chakra-ui/react'
+import { SimpleGrid, Box, Center, Container,
+         Image, Spinner, Button, Collapse, useDisclosure } from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 
 
 import { ConfigContext } from '../App.jsx';
-import ImgDisplay from './ImgDisplay.jsx';
 
-
-const fcolor = '#dd6644'
 
 export default function QueryBuilder({ queryText, queryDispatch, n }) {
   const { isOpen, onToggle } = useDisclosure();
@@ -26,7 +23,7 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
   };
 
   const toggleSelected = (i) => {
-    setSelected((s) => s.map((b, j) => j==i ? !b : b));
+    setSelected((s) => s.map((b, j) => j===i ? !b : b));
   }
 
   useEffect(() => {
@@ -39,7 +36,7 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
         setUrls(extractUrlList(json));
         setVectors(extractVectorList(json));
       });
-  }, [queryText])
+  }, [queryText, config.serviceUrl, n])
 
   useEffect(() => {
     if (selected.some((b) => b)) {
@@ -57,41 +54,33 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
         }
       });
     }
-  }, [selected, vectors]);
+  }, [selected, vectors, queryDispatch, queryText]);
+
+  const selectedColor = '#dd6644'
+  const focusColor = '#88bbff'
+  const selectedFocusColor = '#eeaa44'
+
+  const imgBoxShadow = (selected, hover) => {
+    const color = selected && hover ? selectedFocusColor : (
+      selected ? selectedColor : (
+        hover ? focusColor : ''
+      )
+    )
+    return selected || hover ? '0px 0px 0px 3px ' + color : null;
+  }
 
   return (
     <Container
     maxW='xl'
     p='0px'
+    pt='18px'
     position='relative'
     minH='40px'
-    border='10px'
     >
-      <Center>
-        <Button
-        onClick={onToggle}
-        position='absolute'
-        top={0}
-        zIndex={2}
-        border='2px'
-        borderColor={selected.some((b) => b) ?
-          fcolor : 'gray.300'}
-        borderRadius='full'
-        boxShadow={selected.some((b) => b) ?
-          '0px 0px 0px 2px ' + fcolor :
-          null}>
-          Refine your query
-          {isOpen ?
-            <ChevronUpIcon
-            boxSize={8}/> :
-            <ChevronDownIcon
-            boxSize={8}/>}
-        </Button>
-      </Center>
-      <Collapse in={isOpen} animateOpacity>
+      <Collapse in={isOpen}
+      style={{overflow: 'visible'}}>
         <Box
         centerContent
-        mt='18px'
         pt='18px'
         border='2px'
         borderColor='gray.300'
@@ -112,11 +101,9 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
                   key={i}
                   fit='contain'
                   borderRadius='10'
-                  boxShadow={selected[i] ?
-                    '0px 0px 0px 4px ' + fcolor :
-                    null}
+                  boxShadow={imgBoxShadow(selected[i], false)}
                   _hover={{
-                    boxShadow: 'outline'
+                    boxShadow: imgBoxShadow(selected[i], true)
                   }}/>
                 </Center>
               )}
@@ -130,6 +117,26 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
           )}
         </Box>
       </Collapse>
+      <Center>
+        <Button
+        onClick={onToggle}
+        position='absolute'
+        top="0px"
+        border='2px'
+        borderColor={selected.some((b) => b) ?
+          selectedColor : 'gray.300'}
+        borderRadius='full'
+        boxShadow={selected.some((b) => b) ?
+          '0px 0px 0px 1px ' + selectedColor :
+          null}>
+          Refine your query
+          {isOpen ?
+            <ChevronUpIcon
+            boxSize={8}/> :
+            <ChevronDownIcon
+            boxSize={8}/>}
+        </Button>
+      </Center>
     </Container>
   );
 }
