@@ -3,21 +3,20 @@ version: '3.3'
 services:
   frontend:
     env_file:
-      - .env
+      - frontend.local.env
     build:
       context: ./frontend/
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile_local
     ports:
-      - "${FRONTEND_ADDRESS}:3006"
+      - "${LOCAL_FRONTEND_ADDRESS}:3006"
 
   backend:
     env_file:
-      # contains QDRANT_CLUSTER_URL and QDRANT_CLUSTER_TOKEN
-      - secrets.env
-      - .env
+      - secrets.env # contains QDRANT_CLUSTER_URL and QDRANT_CLUSTER_TOKEN
+      - backend.env
     build:
       context: ./backend/
       dockerfile: ./Dockerfile
     ports:
-      - "${SERVICE_ADDRESS}:8000"
+      - "${LOCAL_BACKEND_ADDRESS}:8000"
 #for execution: $> sudo docker compose up

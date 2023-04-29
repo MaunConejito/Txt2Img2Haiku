@@ -8,18 +8,21 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json ./package-lock.json ./
 
 # clean install
-RUN npm ci
+RUN npm ci \
+    && npm cache clean --force
 
-# add app
-COPY / ./
+# add appc
+COPY ./ ./
 
 # prepare .env for build process (prefix with REACT_APP_)
-RUN grep -e '^#' -e '^$' .env -v | perl -ne 'print "REACT_APP_$_"' > .env.new \
+# for some reason environment variables have to be present
+# during build-time in order to be read by React
+RUN grep -e '^#' -e '^$' ../frontend.local.env -v | perl -ne 'print "REACT_APP_$_"' > .env.new \
     && rm .env && mv .env.new .env
 
 # Build production
-RUN npm run build
-RUN npm install -g serve
+RUN npm run build \
+    && npm install -g serve
 
 ## Start the app on port 3006
 CMD serve -s build -l 3006

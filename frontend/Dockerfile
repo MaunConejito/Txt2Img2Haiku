@@ -15,7 +15,9 @@ RUN npm ci \
 COPY ./ ./
 
 # prepare .env for build process (prefix with REACT_APP_)
-RUN grep -e '^#' -e '^$' .env -v | perl -ne 'print "REACT_APP_$_"' > .env.new \
+# for some reason environment variables have to be present
+# during build-time in order to be read by React
+RUN grep -e '^#' -e '^$' ../frontend.prod.env -v | perl -ne 'print "REACT_APP_$_"' > .env.new \
     && rm .env && mv .env.new .env
 
 # Build production
