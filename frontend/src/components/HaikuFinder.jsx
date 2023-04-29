@@ -15,14 +15,21 @@ export default function HaikuFinder({ query, n }) {
 
   useEffect(() => {
     setHaikus(null);
-    fetch(config.serviceUrl + '/api/haikus/search?n=' + n, {
+    fetch(config.serviceUrl + '/api/haiku/search?n=' + n, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(query)
-    }).then((response) => response.json())
-      .then((json) => {
+    })
+    .then((response) => response.json())
+    .then(
+      (json) => {
         setHaikus(extractHaikuList(json));
-      });
+      },
+      (error) => {
+        console.error("Haiku request failed: " + error.message);
+        setHaikus(null);
+      }
+    );
   }, [query])
 
   return (

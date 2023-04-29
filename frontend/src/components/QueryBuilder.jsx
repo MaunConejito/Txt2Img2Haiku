@@ -1,7 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { SimpleGrid, Box, Center, Container,
-         Image, Spinner, Button, Collapse, useDisclosure } from '@chakra-ui/react'
+import {
+  SimpleGrid,
+  Box,
+  Center,
+  Container,
+  Image,
+  Spinner,
+  Button,
+  Collapse,
+  useDisclosure
+} from '@chakra-ui/react'
 import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons'
 
 
@@ -32,10 +41,17 @@ export default function QueryBuilder({ queryText, queryDispatch, n }) {
     fetch(config.serviceUrl + '/api/imgs/search?q='
                             + queryText + '&n=' + n)
     .then((response) => response.json())
-      .then((json) => {
+    .then(
+      (json) => {
         setUrls(extractUrlList(json));
         setVectors(extractVectorList(json));
-      });
+      },
+      (error) => {
+        console.error("Image request failed: " + error.message);
+        setUrls(null);
+        setVectors(null);
+      }
+    );
   }, [queryText, config.serviceUrl, n])
 
   useEffect(() => {
