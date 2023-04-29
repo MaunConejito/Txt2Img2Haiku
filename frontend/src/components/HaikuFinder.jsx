@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { Box, Center, Container, Text, Spinner } from '@chakra-ui/react';
+import { Center, Container, Spinner } from '@chakra-ui/react';
 
 import { ConfigContext } from '../App.jsx';
 import HaikuDisplay from './HaikuDisplay.jsx';
@@ -30,7 +30,7 @@ export default function HaikuFinder({ query, n }) {
         setHaikus(null);
       }
     );
-  }, [query])
+  }, [query, config, n])
 
   return (
     <Container
