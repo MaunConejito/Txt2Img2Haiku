@@ -12,7 +12,8 @@ RUN poetry config virtualenvs.create false \
 	&& poetry install --without dev --no-root --no-interaction --no-ansi \
   && rm -rf /root/.cache/pypoetry
 
-# only include for testing purposes (no download on container startup)
+# only include for testing purposes
+# (-> huge image size but no download on container startup)
 # RUN python -c 'from sentence_transformers import SentenceTransformer; SentenceTransformer("sentence-transformers/clip-ViT-B-32-multilingual-v1");'
 
 COPY ./ ./
