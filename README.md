@@ -86,3 +86,7 @@ In the terminal navigate to the project's root folder and run `$ docker compose 
 Install by running `$ npm install /path/to/frontend/` and `$ pip install /path/to/backend/`.
 
 After installation, run `python /path/to/backend/main.py` to start backend and ``npm start --prefix path/to/frontend/`` to start frontend.
+
+## Contact
+
+Feedback and suggestions are very welcome! Contact me at mrammler[at]web.de
