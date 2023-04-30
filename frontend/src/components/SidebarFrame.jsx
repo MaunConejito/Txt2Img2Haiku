@@ -150,11 +150,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <Link mr={3} fontSize='sm' href='https://github.com/FatMadLad/Txt2Img2Haiku' isExternal>
           <GitHubIcon size={22} color='#333333'/>
         </Link>
-        <Link mr={3} fontSize='sm' href='mailto:mrammler@web.de' isExternal>
-          <EmailIcon size={20} color='#333333'/>
-        </Link>
-        <Link mr={0} fontSize='sm' href='https://twitter.com/manu_el_conejo' isExternal>
+        <Link mr={3} fontSize='sm' href='https://twitter.com/manu_el_conejo' isExternal>
           <TwitterIcon size={22} color='#333333'/>
+        </Link>
+        <Link mr={0} fontSize='sm' href='mailto:mrammler@web.de' isExternal>
+          <EmailIcon size={22} color='#333333'/>
         </Link>
       </Flex>
     </Box>
