@@ -50,7 +50,7 @@ The search engine used is [Qdrant](https://qdrant.tech/), offering a [cloud host
 ### Requirements
 
 * You will need to have set up a free cluster at [Qdrant Cloud](https://cloud.qdrant.io)
-*  and installed [Python](https://www.python.org/downloads/) as well as either ...
+*  and installed [Python3](https://www.python.org/downloads/) as well as either ...
 	* [Docker](https://docs.docker.com/get-docker/)
 	or
 	* [Node.js](https://nodejs.org/en/download)
@@ -66,7 +66,7 @@ The search engine used is [Qdrant](https://qdrant.tech/), offering a [cloud host
 
 #### Prepare Data and Initialize Cluster
 
-Run `$ pip install /path/to/data_init/`. After installation run the `initialize_data.py` script: `$ python /path/to/initialize_data.py` (try the `-h` flag for available options).
+Run `$ pip3 install /path/to/data_init/`. After installation run the `initialize_data.py` script: `$ python3 /path/to/initialize_data.py` (try the `-h` flag for available options).
 
 This will take a while since images and haiku have to be downloaded, embedded and uploaded to the cluster. For testing, limit the number of handled images and haiku with `--max_imgs` (default 5000) and `--max_haiku`.
 
@@ -83,9 +83,9 @@ In the terminal navigate to the project's root folder and run `$ docker compose 
 
 #### Manual Installation
 
-Install by running `$ npm install /path/to/frontend/` and `$ pip install /path/to/backend/`.
+Install by running `$ npm install /path/to/frontend/` and `$ pip3 install /path/to/backend/`.
 
-After installation, run `python /path/to/backend/main.py` to start backend and ``npm start --prefix path/to/frontend/`` to start frontend.
+After installation, run `python3 /path/to/backend/main.py` to start backend and ``npm start --prefix path/to/frontend/`` to start frontend.
 
 ## Contact
 
