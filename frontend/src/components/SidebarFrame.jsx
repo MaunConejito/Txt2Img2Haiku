@@ -15,9 +15,13 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import {
-  QuestionOutlineIcon,
-  ExternalLinkIcon
+  QuestionOutlineIcon
 } from '@chakra-ui/icons'
+import {
+  GitHubIcon,
+  TwitterIcon,
+  EmailIcon
+} from '../icons.jsx'
 
 export default function SidebarFrame({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -143,8 +147,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
         mx='4'
         borderTop={'1px'}
         borderTopColor={'gray.200'}>
-        <Link fontSize='sm' href='https://github.com/FatMadLad/Txt2Img2Haiku' isExternal>
-          GitHub Repository <ExternalLinkIcon mx='2px' />
+        <Link mr={3} fontSize='sm' href='https://github.com/FatMadLad/Txt2Img2Haiku' isExternal>
+          <GitHubIcon size={22} color='#333333'/>
+        </Link>
+        <Link mr={3} fontSize='sm' href='mailto:mrammler@web.de' isExternal>
+          <EmailIcon size={20} color='#333333'/>
+        </Link>
+        <Link mr={0} fontSize='sm' href='https://twitter.com/manu_el_conejo' isExternal>
+          <TwitterIcon size={22} color='#333333'/>
         </Link>
       </Flex>
     </Box>
