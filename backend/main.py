@@ -16,6 +16,8 @@ def read_env_vars(env_dir, env_files):
 
 if __name__ == '__main__':
 
-    read_env_vars('..', ['secrets.env', 'backend.env'])
-    
+    FILE_DIR = os.path.dirname(__file__)
+
+    read_env_vars(os.path.join(FILE_DIR, '..'), ['secrets.env', 'backend.env'])
+
     uvicorn.run('qdrant_service.service:app', host='0.0.0.0', port=8000, reload=True)
