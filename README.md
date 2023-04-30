@@ -43,7 +43,7 @@ The model used for embedding is [CLIP](https://huggingface.co/sentence-transform
 
 ### Vector Search Engine
 
-The search engine used is [Qdrant](https://qdrant.tech/), offering a [cloud hosted solution](https://cloud.qdrant.io/) (free up to 1GB). You can use either its API or a Python client to upload a collection of vector-payload-pairs and then perform searches on query vectors.
+The search engine used is [Qdrant](https://qdrant.tech/), offering a [cloud hosted solution](https://cloud.qdrant.io/) (free up to 1GB). You can use either its API or a Python client to upload a collection of vector-payload-pairs and then perform searches on it by submitting query vectors.
 
 ## Run this App
 
@@ -70,10 +70,12 @@ Run `$ pip install /path/to/data_init/`. After installation run the `initialize_
 
 This will take a while since images and haiku have to be downloaded, embedded and uploaded to the cluster. For testing, limit the number of handled images and haiku with `--max_imgs` (default 5000) and `--max_haiku`.
 
-### Run App
+### Install and Run Locally
 
 Note: After startup, frontend and backend should be available at the addresses specified in the `.env` file.
 > If you change `LOCAL_BACKEND_ADDRESS` in `.env`, also change `SERVICE_URL` in `frontend/frontend.local.env` accordingly.
+
+After backend startup you can view an API specification at `<backend_url>/docs`.
 
 #### Docker
 
